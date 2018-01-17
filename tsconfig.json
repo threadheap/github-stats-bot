@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "rootDir": "./",
+        "paths": {
+            "@/*": [
+                "./app/*"
+            ]
+        },
+        "module": "commonjs",
+        "target": "es5",
+        "lib": [
+            "es6",
+            "esnext.asynciterable"
+        ],
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "allowJs": true,
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "noImplicitReturns": true,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "forceConsistentCasingInFileNames": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "jsx": "react"
+    },
+    "exclude": [
+        "node_modules",
+        "./scripts"
+    ],
+    "types": [
+        "typePatches",
+        "jest",
+        "aws-sdk"
+    ],
+    "awesomeTypescriptLoaderOptions": {
+        "transpileOnly": true
+    }
+}

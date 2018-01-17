@@ -1,0 +1,97 @@
+{
+    "name": "github-stats",
+    "version": "1.0.0",
+    "description": "",
+    "main": "webpack.dev.js",
+    "scripts": {
+        "test": "jest",
+        "lint": "tslint 'app/**/*.ts'",
+        "storybook": "start-storybook -p 6006",
+        "build-storybook": "build-storybook",
+        "deploy": "cd ./app/stats && sls deploy"
+    },
+    "author": "Pavel Vlasov <freakycue@gmail.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "@storybook/addon-actions": "^3.2.17",
+        "@storybook/addon-links": "^3.2.17",
+        "@storybook/cli": "^3.2.17",
+        "@storybook/react": "^3.2.17",
+        "@types/archiver": "^2.0.1",
+        "@types/d3": "^4.12.0",
+        "@types/jest": "^21.1.5",
+        "@types/jsdom": "^11.0.4",
+        "@types/local-dynamo": "^0.5.0",
+        "@types/lodash": "^4.14.80",
+        "@types/lodash.defaultsdeep": "^4.6.3",
+        "@types/moment": "^2.13.0",
+        "@types/nock": "^9.1.1",
+        "@types/node": "^8.5.1",
+        "@types/nodegit": "^0.18.5",
+        "@types/react": "^15.6.10",
+        "@types/react-dom": "^16.0.3",
+        "@types/storybook__react": "^3.0.5",
+        "@types/uuid": "^3.4.3",
+        "awesome-typescript-loader": "^3.3.0",
+        "aws-lambda-typescript": "^1.0.1",
+        "aws-sdk": "^2.141.0",
+        "copy-webpack-plugin": "^4.3.1",
+        "css-loader": "^0.28.7",
+        "jest": "^21.2.1",
+        "lodash.defaultsdeep": "^4.6.0",
+        "nock": "^9.1.6",
+        "node-loader": "^0.6.0",
+        "serverless": "serverless/serverless",
+        "serverless-webpack": "^3.1.2",
+        "source-map-support": "^0.5.0",
+        "style-loader": "^0.19.1",
+        "ts-jest": "^21.1.4",
+        "ts-loader": "^3.2.0",
+        "tsconfig-paths-webpack-plugin": "^1.2.0",
+        "tslint": "^5.8.0",
+        "tslint-consistent-codestyle": "^1.9.0",
+        "typescript": "^2.5.3",
+        "uglifyjs-webpack-plugin": "^1.1.6",
+        "webpack-node-externals": "^1.6.0",
+        "webpack-permissions-plugin": "^0.0.2"
+    },
+    "jest": {
+        "verbose": false,
+        "transform": {
+            "^.+\\.tsx?$": "ts-jest"
+        },
+        "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js",
+            "jsx",
+            "json"
+        ],
+        "moduleNameMapper": {
+            "@/(.*)": "<rootDir>/app/$1",
+            ".*\\.css": "<rootDir>/app/__mocks__/style-mock.js"
+        },
+        "testEnvironment": "node"
+    },
+    "pre-commit": [
+        "test",
+        "lint"
+    ],
+    "dependencies": {
+        "@nivo/bar": "^0.33.0",
+        "@nivo/calendar": "^0.33.0",
+        "@types/request-promise-native": "^1.0.10",
+        "@types/xmldom": "^0.1.29",
+        "archiver": "^2.1.0",
+        "jsdom": "^11.5.1",
+        "moment": "^2.19.3",
+        "phantomjs": "^2.1.7",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
+        "request": "^2.83.0",
+        "request-promise-native": "^1.0.5",
+        "s3-upload-stream": "^1.0.7",
+        "webshot": "threadheap/node-webshot"
+    }
+}

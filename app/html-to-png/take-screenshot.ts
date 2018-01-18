@@ -21,14 +21,12 @@ export default (
 
             exec(cmd, (err, stdout, stderr) => {
                 if (err) {
-                    console.error(err, stdout, stderr);
                     return reject(err);
                 }
 
                 if (stdout.startsWith(PREFIX)) {
                     resolve(new Buffer(stdout.substring(PREFIX.length), "base64"))
                 } else {
-                    console.log(stdout, stderr);
                     reject(new Error("Unknown error"))
                 }
             })

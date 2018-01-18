@@ -15,23 +15,25 @@ module.exports = {
                 'com.github-stats.${self:provider.region}.${self:provider.stage}.deploys'
         },
         environment: {
-            BUCKET: 'com.github-stats.${self:provider.region}.${self:provider.stage}.images',
-            GITHUB_TOKEN: '${env:GITHUB_TOKEN}'
+            BUCKET:
+                'com.github-stats.${self:provider.region}.${self:provider.stage}.images',
+            GITHUB_TOKEN: '${env:GITHUB_TOKEN}',
+            STAGE: '${self:provider.stage}'
         },
-        iamRoleStatements: [{
-            Effect: 'Allow',
-            Action: [
-                's3:ListBucket'
-            ],
-            Resource: ["arn:aws:s3:::com.github-stats.us-east-1.dev.images"]
-        },{
-            Effect: 'Allow',
-            Action: [
-                's3:PutObject',
-                's3:GetObject'
-            ],
-            Resource: ["arn:aws:s3:::com.github-stats.us-east-1.dev.images/*"]
-        }],
+        iamRoleStatements: [
+            {
+                Effect: 'Allow',
+                Action: ['s3:ListBucket'],
+                Resource: ['arn:aws:s3:::com.github-stats.us-east-1.dev.images']
+            },
+            {
+                Effect: 'Allow',
+                Action: ['s3:PutObject', 's3:GetObject'],
+                Resource: [
+                    'arn:aws:s3:::com.github-stats.us-east-1.dev.images/*'
+                ]
+            }
+        ]
     },
     plugins: ['serverless-webpack']
 };

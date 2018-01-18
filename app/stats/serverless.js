@@ -1,32 +1,48 @@
 const baseConfig = require('../../serverless.base');
 const defaultsDeep = require('lodash.defaultsdeep');
 
-module.exports = defaultsDeep({
-    service: 'git-stats',
-    functions: {
-        getContributorStats: {
-            name: '${self:provider.stage}-getContributorStats',
-            handler: 'index.handler',
-            description: 'generate contributor stats image',
-            events: [{
-                http: {
-                    method: 'get',
-                    path: '/stats/{owner}/{repo}',
-                    request: {
-                        parameters: {
-                            path: {
-                                owner: true,
-                                repo: true
+module.exports = defaultsDeep(
+    {
+        service: 'git-stats',
+        provider: {
+            iamRoleStatements: [
+                ...baseConfig.provider.iamRoleStatements,
+                {
+                    Effect: 'Allow',
+                    Action: ['lambda:InvokeFunction'],
+                    Resource: ['*']
+                }
+            ]
+        },
+        functions: {
+            getContributorStatsImage: {
+                name: '${self:provider.stage}-getContributorStatsImage',
+                handler: 'index.handler',
+                events: [
+                    {
+                        http: {
+                            path: '/stats/contributors/{owner}/{repo}',
+                            method: 'get',
+                            parameters: {
+                                paths: {
+                                    owner: true,
+                                    repo: true
+                                },
+                                querystrings: {
+                                    start: false,
+                                    end: false
+                                }
                             }
                         }
                     }
-                }
-            }],
-            memorySize: 512,
-            timeout: 30,
+                ],
+                memorySize: 256,
+                timeout: 30
+            }
+        },
+        custom: {
+            webpack: './webpack.config.ts'
         }
     },
-    custom: {
-        webpack: './webpack.dev.js'
-    }
-}, baseConfig);
+    baseConfig
+);

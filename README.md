@@ -1,1 +1,1 @@
-# serverless-typescript-nivo-boilerplate
+# github-stats-bot

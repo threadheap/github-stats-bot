@@ -1,5 +1,5 @@
 const baseConfig = require('../../serverless.base');
-const defaultsDeep = require('lodash.defaultsdeep');
+const { defaultsDeep } = require('lodash');
 
 module.exports = defaultsDeep(
     {

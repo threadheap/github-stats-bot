@@ -1,11 +1,6 @@
-import renderBar from "@/shared/api/chart/bar";
 import { Callback, Context } from "aws-lambda";
-import * as AWS from "aws-sdk";
-import generateContributorsStats, { Query } from "./get-contributors-stats";
-
-const lambda = new AWS.Lambda();
-const token = process.env.GITHUB_TOKEN as string;
-const stage = process.env.STAGE as string;
+import fetchImage from "./fetch-image";
+import { Query } from "./get-contributors-stats";
 
 interface QueryStringParameters {
     start?: string;
@@ -44,26 +39,12 @@ export const handler = async (
         const repo = `${event.pathParameters.owner}/${
             event.pathParameters.repo
         }`;
-        const res = await generateContributorsStats(
-            token,
+
+        const data = await fetchImage(
             repo,
             getQuery(event.queryStringParameters)
         );
-        const params = {
-            FunctionName: `${stage}-renderToPng`,
-            InvocationType: "RequestResponse",
-            LogType: "Tail",
-            Payload: JSON.stringify({
-                body: {
-                    html: renderBar(res),
-                    width: 600,
-                    height: 300,
-                    name: `${repo}-contributors-${Date.now()}.png`
-                }
-            })
-        };
 
-        const data = await lambda.invoke(params).promise();
         callback(null, {
             statusCode: 200,
             body: data.Payload

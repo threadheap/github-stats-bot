@@ -26,6 +26,7 @@
     "exclude": ["node_modules", "./scripts"],
     "types": ["typePatches", "jest", "aws-sdk"],
     "awesomeTypescriptLoaderOptions": {
-        "transpileOnly": true
+        "transpileOnly": true,
+        "sourceMap": true
     }
 }

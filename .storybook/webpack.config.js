@@ -10,10 +10,6 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 use: 'awesome-typescript-loader'
-            },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
             }
         ]
     },
@@ -21,7 +17,7 @@ module.exports = {
         alias: {
             '@': path.resolve(__dirname, '../app')
         },
-        extensions: ['.tsx', '.ts', '.js', 'json']
+        extensions: ['.tsx', '.ts', '.js', '.json']
     },
     output: {
         filename: 'bundle.js',

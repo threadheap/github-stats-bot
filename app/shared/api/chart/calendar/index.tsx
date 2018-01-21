@@ -1,23 +1,22 @@
-import { Calendar as NCalendar } from "@nivo/calendar"
-import { DOMElement } from "react"
-import * as React from "react"
-import { render } from "react-dom"
-import "./styles.css"
+import { Calendar as NCalendar } from "@nivo/calendar";
+import { DOMElement } from "react";
+import * as React from "react";
+import { render } from "react-dom";
 
 export interface Interval {
-    day: string | Date
-    value: number
+    day: string | Date;
+    value: number;
 }
 
 export interface Options {
-    from?: string | Date
-    to?: string | Date,
-    isInteractive?: boolean,
+    from?: string | Date;
+    to?: string | Date;
+    isInteractive?: boolean;
 }
 
 export const Calendar = (props: { data: Interval[]; options?: Options }) => {
-    const data = props.data
-    const options = props.options || {}
+    const data = props.data;
+    const options = props.options || {};
 
     return (
         <NCalendar
@@ -52,13 +51,13 @@ export const Calendar = (props: { data: Interval[]; options?: Options }) => {
             ]}
             isInteractive={options.isInteractive}
         />
-    )
-}
+    );
+};
 
 export default (
     target: DOMElement<any, any>,
     data: Interval[],
     options: Options = {}
 ) => {
-    render(<Calendar data={data} options={options} />, target)
-}
+    render(<Calendar data={data} options={options} />, target);
+};

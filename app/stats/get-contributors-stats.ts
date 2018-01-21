@@ -25,19 +25,19 @@ const getAggregatedData = (data: ContributorStats[], query: Query) => {
                     (memo, week) => {
                         return {
                             added: memo.added + week.a,
-                            changed: memo.changed + week.c,
+                            modified: memo.modified + week.c,
                             deleted: memo.deleted + week.d
                         };
                     },
                     {
                         added: 0,
-                        changed: 0,
+                        modified: 0,
                         deleted: 0
                     }
                 )
             };
         }),
-        item => item.added + item.changed + item.deleted
+        item => -(item.added + item.modified + item.deleted)
     ).slice(0, 5);
 };
 

@@ -15,20 +15,14 @@ export default (basePath: string) => ({
         extensions: [".js", ".json", ".ts", ".tsx"],
         plugins: [new TsConfigPathsPlugin()]
     },
-    externals: ["aws-sdk", "phantomjs-prebuilt"],
+    externals: ["aws-sdk"],
     output: {
         libraryTarget: "commonjs",
         path: path.join(basePath, ".webpack"),
         filename: "[name].js"
     },
     module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"]
-            },
-            { test: /\.ts(x?)$/, loader: "awesome-typescript-loader" }
-        ]
+        rules: [{ test: /\.ts(x?)$/, loader: "awesome-typescript-loader" }]
     },
     devtool: "source-map"
 });

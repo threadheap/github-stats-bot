@@ -25,7 +25,7 @@ yarn add -g serviceless
 6. To deploy run
 
 ```sh
-slx deploy all
+sudo GITHUB_TOKEN=<github_token> SLACK_TOKEN=<slack_token> slx deploy all
 ```
 
 ## LICENCE

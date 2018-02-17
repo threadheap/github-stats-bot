@@ -1,4 +1,3 @@
-import * as moment from "moment";
 import * as request from "request-promise-native";
 
 const BASE_URL = "https://api.github.com";

@@ -18,6 +18,7 @@ module.exports = {
             BUCKET:
                 'com.github-stats.${self:provider.region}.${self:provider.stage}.images',
             GITHUB_TOKEN: '${env:GITHUB_TOKEN}',
+            SLACK_TOKEN: '${env:SLACK_TOKEN}',
             STAGE: '${self:provider.stage}'
         },
         iamRoleStatements: [

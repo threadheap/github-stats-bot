@@ -3,6 +3,8 @@
 Github stats rendering service
 Written in typescript using [serverless framework](https://serverless.com/), [phantomjs](http://phantomjs.org/) and [nivo](http://nivo.rocks/#/).
 
+[Medium story](https://medium.freecodecamp.org/how-to-build-a-github-bot-with-phantomjs-react-and-serverless-framework-7b66bb575616)
+
 ## How to use
 
 1. Clone repo
@@ -27,6 +29,11 @@ yarn add -g serviceless
 ```sh
 sudo GITHUB_TOKEN=<github_token> SLACK_TOKEN=<slack_token> slx deploy all
 ```
+
+Examples of reports:
+![Contributor stats serverless](https://cdn-images-1.medium.com/max/1600/1*PpPdZg9hW4ee7VbCLQM7Gw.png)
+![Contributor stats react](https://cdn-images-1.medium.com/max/1600/1*taq4dd5hTHMIXlcUdPl0rQ.png)
+![Contributor stats nivo](https://cdn-images-1.medium.com/max/1600/1*KPvScIrez3aAsbwt_nDAuA.png)
 
 ## LICENCE
 

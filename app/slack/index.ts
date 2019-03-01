@@ -70,20 +70,11 @@ export const handler = async (
                         })
                     };
 
-                    const response = await lambda.invoke(params).promise();
-                    const payload = JSON.parse(response.Payload);
-
-                    const message = {
-                        channel: mentionEvent.channel,
-                        text: "Contributor stats",
-                        attachments: [
-                            {
-                                title: `Contributor stats for ${repo} repository`,
-                                image_url: payload.imageUri
-                            }
-                        ]
-                    };
-
+                    const { Payload: payload } = await lambda.invoke(params).promise();
+                    if (payload === undefined) {
+                        throw new Error("payload is undefined")
+                    }
+                    const { imageUri } = JSON.parse(payload.toString());
                     await request({
                         url: "https://slack.com/api/chat.postMessage",
                         method: "post",
@@ -92,7 +83,16 @@ export const handler = async (
                             Authorization: `Bearer ${slackToken}`,
                             "User-Agent": "Stats Bot for Slack"
                         },
-                        body: message
+                        body: {
+                            channel: mentionEvent.channel,
+                            text: "Contributor stats",
+                            attachments: [
+                                {
+                                    title: `Contributor stats for ${repo} repository`,
+                                    image_url: imageUri,
+                                }
+                            ]
+                        },
                     });
                 } else {
                     throw new Error("Can not recognize repository name");
